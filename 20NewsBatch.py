@@ -71,7 +71,6 @@ def pre_process():
 
     words = []
     temp_post_text = []
-    print(len(newsgroups_data))
 
     for post in newsgroups_data:
 
