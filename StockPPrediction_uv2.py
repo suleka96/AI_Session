@@ -12,17 +12,6 @@ import random as rn
 import os
 np.random.seed(1)
 
-# os.environ['PYTHONHASHSEED'] = '0'
-#
-# # Setting the seed for numpy-generated random numbers
-# np.random.seed(1)
-#
-# # Setting the seed for python random numbers
-# rn.seed(1)
-#
-# # Setting the graph-level random seed.
-# tf.set_random_seed(1)
-
 
 class RNNConfig():
     input_size = 1
@@ -160,15 +149,15 @@ def train_test():
         keep_prob = tf.placeholder(tf.float32, None, name="keep_prob")
 
 
-        # lstm_cell = tf.contrib.rnn.LSTMCell(config.hidden_size, state_is_tuple=True)
+        # model_cell = tf.contrib.rnn.LSTMCell(config.hidden_size, state_is_tuple=True)
 
-        lstm_cell = tf.contrib.rnn.BasicRNNCell(config.hidden_size)
+        model_cell = tf.contrib.rnn.BasicRNNCell(config.hidden_size)
 
 
         # Add dropout to the cell
-        drop = tf.contrib.rnn.DropoutWrapper(lstm_cell, output_keep_prob=keep_prob)
+        drop = tf.contrib.rnn.DropoutWrapper(model_cell, output_keep_prob=keep_prob)
 
-        # Stack up multiple LSTM layers, for deep learning
+        # Stack up multiple RNN layers, for deep learning
         cell = tf.contrib.rnn.MultiRNNCell([drop] * config.num_layers)
 
         val1, _ = tf.nn.dynamic_rnn(cell, inputs, dtype=tf.float32)
