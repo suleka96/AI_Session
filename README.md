@@ -1,6 +1,7 @@
 # AI_Session
 
 When running on Colaboratory
+
 	1) put the CSV file to g-drive
 	2) run the below command
 	
