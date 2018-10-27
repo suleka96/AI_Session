@@ -13,6 +13,7 @@ import os
 np.random.seed(1)
 
 
+
 class RNNConfig():
     input_size = 1
     num_steps = 2
@@ -149,13 +150,13 @@ def train_test():
         keep_prob = tf.placeholder(tf.float32, None, name="keep_prob")
 
 
-        # model_cell = tf.contrib.rnn.LSTMCell(config.hidden_size, state_is_tuple=True)
+        # lstm_cell = tf.contrib.rnn.LSTMCell(config.hidden_size, state_is_tuple=True)
 
-        model_cell = tf.contrib.rnn.BasicRNNCell(config.hidden_size)
+        lstm_cell = tf.contrib.rnn.BasicRNNCell(config.hidden_size)
 
 
         # Add dropout to the cell
-        drop = tf.contrib.rnn.DropoutWrapper(model_cell, output_keep_prob=keep_prob)
+        drop = tf.contrib.rnn.DropoutWrapper(lstm_cell, output_keep_prob=keep_prob)
 
         # Stack up multiple RNN layers, for deep learning
         cell = tf.contrib.rnn.MultiRNNCell([drop] * config.num_layers)
