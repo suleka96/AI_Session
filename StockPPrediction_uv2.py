@@ -13,7 +13,7 @@ import os
 np.random.seed(1)
 
 
-
+# Class to configure the Recurrent Neural Network
 class RNNConfig():
     input_size = 1
     num_steps = 2
@@ -35,6 +35,7 @@ class RNNConfig():
 config = RNNConfig()
 
 
+# Function to segment the dataset
 def segmentation(data):
 
     seq = [price for tup in data[[config.column]].values for price in tup]
@@ -52,6 +53,8 @@ def segmentation(data):
 
     return X, y
 
+
+# Function to scale the dataset
 def scale(data):
 
     data[config.column] = (data[config.column] - config.min) / (config.max - config.min)
@@ -59,6 +62,7 @@ def scale(data):
     return data
 
 
+# Function to preprocess the dataset
 def pre_process():
     # plot_main_distribution()
 
@@ -92,6 +96,7 @@ def pre_process():
     return train_X, train_y, test_X, test_y, nonescaled_y
 
 
+# Function to generate the batches
 def generate_batches(train_X, train_y, batch_size):
     num_batches = int(len(train_X)) // batch_size
     if batch_size * num_batches < len(train_X):
